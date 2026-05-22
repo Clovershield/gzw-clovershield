@@ -3,16 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manuel du Commandant Clovershield — GZW Manuel Clovershield</title>
-<meta name="description" content="Guide complet Gray Zone Warfare — Manuel de survie rédigé par le Commandant Clovershield. Factions, médical, furtivité, vendeurs, progression.">
-<meta property="og:title" content="Manuel du Commandant Clovershield — GZW Clovershield">
-<meta property="og:description" content="Guide complet Gray Zone Warfare — Manuel de survie rédigé par le Commandant Clovershield. Factions, médical, furtivité, vendeurs, progression.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
+<title>Glossaire GZW — GZW Manuel Clovershield</title>
+<meta name="description" content="Glossaire complet Gray Zone Warfare — tous les termes militaires, jargon GZW et abréviations expliqués.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d0f0a'/><path d='M50 15 L65 40 L50 85 L35 40 Z' fill='%23d4820a'/><circle cx='50' cy='35' r='10' fill='%23e8dcc8'/></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-
   :root {
     --khaki: #8b7355;
     --mud: #3d2f1e;
@@ -735,7 +730,6 @@
   .hl-paper { color: var(--paper); font-weight: 600; }
   .hl-mono { font-family: 'Share Tech Mono', monospace; font-size: 0.85em; }
 
-
   /* ── PROGRESS BAR ── */
   #progress-bar {
     position: fixed; top: 0; left: 0; height: 2px;
@@ -871,10 +865,8 @@
     .chapter-grid { grid-template-columns: 1fr; }
     .page-nav { flex-direction: column; text-align: center; }
   }
-
 </style>
-</head>
-<body>
+</head><body>
 
 <div id="progress-bar"></div>
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
@@ -929,7 +921,7 @@
 })();
 </script>
 <nav>
-  <a href="index.html" data-num="◈" class="active">Accueil</a>
+  <a href="index.html" data-num="◈" >Accueil</a>
   <a href="clovershield.html" data-num="◈" >Clovershield</a>
   <a href="zero-to-hero.html" data-num="✦" >Zero to Hero</a>
   <a href="intro.html" data-num="00" >Intro</a>
@@ -944,130 +936,99 @@
   <a href="combat.html" data-num="09" >Combat</a>
   <a href="armes.html" data-num="10" >Armes</a>
   <a href="roadmap.html" data-num="11" >Roadmap</a>
-  <a href="glossaire.html" data-num="12" >Glossaire</a>
+  <a href="glossaire.html" data-num="12" class='active'>Glossaire</a>
 </nav>
-
-<header>
-  <div class="grid-bg"></div>
-  <div class="scan-line"></div>
-  <div class="header-content">
-    <div class="classification">⬛ CONFIDENTIEL — USAGE INTERNE — PMC TOUTES FACTIONS ⬛</div>
-    <h1>GRAY ZONE<br><span>WARFARE</span></h1>
-    <div class="subtitle">
-      MANUEL DE SURVIE ET D'OPÉRATIONS<br>
-      Rédigé par le Commandant Clovershield — Île de Lamang<br>
-      À l'usage exclusif des nouvelles recrues
+<div class="breadcrumb"><a href="index.html">Manuel</a><span>›</span>Glossaire</div>
+<main>
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">12</div>
+    <div class="chapter-title-block">
+      <div class="chapter-tag">Référence // Dictionnaire de Terrain</div>
+      <h2 class="chapter-title">Glossaire — Parler Le Langage de Lamang</h2>
+      <p class="chapter-subtitle">"Si tu ne comprends pas les ordres, tu ne peux pas les exécuter."</p>
     </div>
-    <div class="version-badge">⚑ Version 0.4.2.0 — Mise à jour Spearhead — Mai 2026</div>
-  </div>
-  <div class="scroll-hint">↓ CHOISIR UN CHAPITRE ↓</div>
-</header>
-
-<div style="max-width:1400px;margin:0 auto;padding:5rem 8vw;">
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:4rem;">
-    <a href="clovershield.html" style="display:block;text-decoration:none;border:1px solid rgba(155,58,26,0.35);padding:2rem;background:rgba(155,58,26,0.05);transition:all 0.25s;position:relative;overflow:hidden;" onmouseover="this.style.borderColor='rgba(155,58,26,0.7)'" onmouseout="this.style.borderColor='rgba(155,58,26,0.35)'">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;letter-spacing:0.4em;color:var(--rust);margin-bottom:0.8rem;">⬛ DOSSIER CLASSIFIÉ</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--paper);letter-spacing:0.06em;">Commandant Clovershield</div>
-      <div style="font-size:0.82rem;color:var(--sand);opacity:0.7;margin-top:0.5rem;line-height:1.5;">Qui est l'auteur de ce manuel ? Quels secrets lie-t-il à Ground Zero ?</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--rust);margin-top:1rem;">LIRE LE DOSSIER →</div>
-    </a>
-    <a href="zero-to-hero.html" style="display:block;text-decoration:none;border:1px solid rgba(212,130,10,0.35);padding:2rem;background:rgba(212,130,10,0.04);transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(212,130,10,0.7)'" onmouseout="this.style.borderColor='rgba(212,130,10,0.35)'">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;letter-spacing:0.4em;color:var(--amber);margin-bottom:0.8rem;">✦ GUIDE DE PROGRESSION</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--paper);letter-spacing:0.06em;">Zero to Hero</div>
-      <div style="font-size:0.82rem;color:var(--sand);opacity:0.7;margin-top:0.5rem;line-height:1.5;">Quoi faire, quand le faire. Du premier déploiement au rang d'élite.</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--amber);margin-top:1rem;">COMMENCER LA PROGRESSION →</div>
-    </a>
   </div>
 
-  <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.4em;color:var(--rust);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;">CHAPITRES DU MANUEL <span style="flex:1;height:1px;background:rgba(139,115,85,0.2);display:block;"></span></div>
-
-  <div class="chapter-grid">
-    <a href="intro.html" class="chapter-card" data-num="00">
-      <div class="cc-tag">Orientation</div>
-      <div class="cc-title">Introduction</div>
-      <div class="cc-desc">Comprendre GZW, ses modes, sa philosophie. Ce que ce jeu n'est pas.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="factions.html" class="chapter-card" data-num="01">
-      <div class="cc-tag">Décision fondatrice</div>
-      <div class="cc-title">Factions</div>
-      <div class="cc-desc">LRI, Mithras, Crimson Shield. Un choix définitif qui change tout.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="medical.html" class="chapter-card" data-num="02">
-      <div class="cc-tag">Survie critique</div>
-      <div class="cc-title">Système Médical</div>
-      <div class="cc-desc">Saignements, fractures, coma. Le système le plus complexe du jeu.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="furtivite.html" class="chapter-card" data-num="03">
-      <div class="cc-tag">Tactique</div>
-      <div class="cc-title">Furtivité</div>
-      <div class="cc-desc">Visibilité, son, posture, météo. Être vu c'est mourir.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="ia.html" class="chapter-card" data-num="04">
-      <div class="cc-tag">Renseignement</div>
-      <div class="cc-title">IA Ennemie</div>
-      <div class="cc-desc">7 factions, 7 comportements. Analyse complète des ennemis.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="inventaire.html" class="chapter-card" data-num="05">
-      <div class="cc-tag">Logistique</div>
-      <div class="cc-title">Inventaire & Loot</div>
-      <div class="cc-desc">Lockbox, poids, valeur par slot. Tout ce que tu portes peut être perdu.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="vendeurs.html" class="chapter-card" data-num="06">
-      <div class="cc-tag">Économie</div>
-      <div class="cc-title">Vendeurs</div>
-      <div class="cc-desc">Handshake, Gunny, Vulture... Comprendre la progression par réputation.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="carte.html" class="chapter-card" data-num="07">
-      <div class="cc-tag">Navigation</div>
-      <div class="cc-title">Carte & LZ</div>
-      <div class="cc-desc">42 km² de Lamang. Zones Tier, Landing Zones, déploiement tactique.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="survie.html" class="chapter-card" data-num="08">
-      <div class="cc-tag">Physiologie</div>
-      <div class="cc-title">Survie</div>
-      <div class="cc-desc">Hydratation, énergie, buffs alimentaires. Le corps comme outil.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="combat.html" class="chapter-card" data-num="09">
-      <div class="cc-tag">Doctrine</div>
-      <div class="cc-title">Combat Avancé</div>
-      <div class="cc-desc">Angles, chargeurs, discipline d'extraction. Ce qui tue et ce qui sauve.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="armes.html" class="chapter-card" data-num="10">
-      <div class="cc-tag">Équipement</div>
-      <div class="cc-title">Armes & Balistique</div>
-      <div class="cc-desc">Modding, pénétration, recul, ergonomie. Construire l'arme parfaite.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="roadmap.html" class="chapter-card" data-num="11">
-      <div class="cc-tag">Avenir</div>
-      <div class="cc-title">Roadmap</div>
-      <div class="cc-desc">v0.5 à v1.0. Ce qui arrive sur Lamang et comment s'y préparer.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="glossaire.html" class="chapter-card" data-num="12">
-      <div class="cc-tag">Référence</div>
-      <div class="cc-title">Glossaire</div>
-      <div class="cc-desc">Tous les termes militaires, abréviations GZW et jargon de Lamang.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
+  <div class="briefing">
+    GZW mélange jargon militaire réel, abréviations propres au jeu, et termes hérités d'autres extraction shooters. Ce glossaire traduit et explique chaque terme que tu rencontreras en jeu, sur Discord, ou dans ce manuel. <em>Classé par catégorie pour une consultation rapide.</em>
   </div>
-</div>
 
-<footer>
-  <p>GRAY ZONE WARFARE — MANUEL DU COMMANDANT CLOVERSHIELD<br>
-  VERSION 0.4.2.0 — MAI 2026 — SPEARHEAD UPDATE<br>
-  ⬛ FIN DE TRANSMISSION ⬛</p>
-</footer>
-</body>
-</html>
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Termes de gameplay GZW</div><div class="divider-line"></div></div>
+
+  <table class="tbl">
+    <thead><tr><th>Terme</th><th>Signification</th><th>Contexte d'usage</th></tr></thead>
+    <tbody>
+      <tr><td class="label">LZ</td><td>Landing Zone — Zone d'atterrissage hélicoptère</td><td>"La LZ est chaude" = ennemis présents au point d'extraction</td></tr>
+      <tr><td class="label">Wipe</td><td>Réinitialisation complète du personnage (stash, rep, argent)</td><td>"Je vais wipe pour changer de faction"</td></tr>
+      <tr><td class="label">Stash</td><td>Coffre de stockage personnel à la base</td><td>"Range ça dans ton stash avant de repartir"</td></tr>
+      <tr><td class="label">Lockbox</td><td>Conteneur sécurisé survivant à la mort</td><td>"Mets la clé dans ta lockbox"</td></tr>
+      <tr><td class="label">Rep / Réputation</td><td>Points de fidélité avec un vendeur</td><td>"Il me faut 500 rep pour passer Niv.2 Gunny"</td></tr>
+      <tr><td class="label">COP</td><td>Command Post — Point de commandement contesté sur la carte</td><td>"Vulture est au COP Nord cette semaine"</td></tr>
+      <tr><td class="label">POI</td><td>Point of Interest — Zone nommée sur la carte avec loot/ennemis</td><td>"Fort Narith est le POI le plus dangereux"</td></tr>
+      <tr><td class="label">Loot</td><td>Objets récupérables sur le terrain ou sur les ennemis</td><td>"Run de loot" = session dédiée à la collecte</td></tr>
+      <tr><td class="label">Run / Raid</td><td>Un déploiement complet (départ → action → extraction)</td><td>"J'ai perdu tout mon équipement sur le dernier run"</td></tr>
+      <tr><td class="label">Extract / Extraction</td><td>Appeler l'hélico et quitter la zone avec son butin</td><td>"Extract dès l'objectif fait — sois pas gourmand"</td></tr>
+      <tr><td class="label">Faction-Locked LZ</td><td>LZ accessible uniquement à ta faction (zone sécurisée)</td><td>5 LZ par faction autour de la base de départ</td></tr>
+      <tr><td class="label">Ground Zero / GZ</td><td>Zone centrale mystérieuse de Lamang, mortelle et inaccessible</td><td>Objectif final de la v1.0</td></tr>
+      <tr><td class="label">Field Manual</td><td>Manuel intégré au jeu — 110 pages de documentation officielle</td><td>Accessible depuis le menu principal</td></tr>
+      <tr><td class="label">Blueprint</td><td>Plan d'arme physique à trouver — débloque une plateforme</td><td>Survit au wipe de stash une fois appris</td></tr>
+    </tbody>
+  </table>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Jargon médical</div><div class="divider-line"></div></div>
+
+  <table class="tbl">
+    <thead><tr><th>Terme</th><th>Signification</th><th>Action requise</th></tr></thead>
+    <tbody>
+      <tr><td class="label">Saignement Lourd</td><td>Perte de sang rapide — 2+ indicateurs actifs</td><td>Garrot immédiat</td></tr>
+      <tr><td class="label">Garrot / Tourniquet</td><td>Dispositif de compression pour stopper un saignement</td><td>Touche H (raccourci rapide)</td></tr>
+      <tr><td class="label">Coma</td><td>État d'inconscience totale — volume sanguin trop bas</td><td>Nécessite réanimation par coéquipier</td></tr>
+      <tr><td class="label">Volume Sanguin</td><td>Jauge principale de survie — écran N&B si critique</td><td>Poche de sang pour restaurer</td></tr>
+      <tr><td class="label">Fracture</td><td>Os cassé — jambe : immobilisation, bras : tremblement arme</td><td>Attelle (Splint)</td></tr>
+      <tr><td class="label">DOT</td><td>Damage Over Time — dégâts continus (saignement, intox)</td><td>Traitement spécifique selon type</td></tr>
+    </tbody>
+  </table>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Jargon militaire & PvP</div><div class="divider-line"></div></div>
+
+  <table class="tbl">
+    <thead><tr><th>Terme</th><th>Signification</th></tr></thead>
+    <tbody>
+      <tr><td class="label">PMC</td><td>Private Military Company — Compagnie Militaire Privée. Ce que tu joues.</td></tr>
+      <tr><td class="label">PvE</td><td>Player vs Environment — Tu vs l'IA uniquement (Joint Operations)</td></tr>
+      <tr><td class="label">PvP</td><td>Player vs Player — Joueurs de factions adverses peuvent te tuer (mode Warfare)</td></tr>
+      <tr><td class="label">PvEvP</td><td>Les deux simultanément — la réalité du mode Warfare</td></tr>
+      <tr><td class="label">ADS</td><td>Aim Down Sights — Mettre en joue via le viseur</td></tr>
+      <tr><td class="label">CQB</td><td>Close Quarters Battle — Combat rapproché (&lt;50m, intérieur)</td></tr>
+      <tr><td class="label">NVG</td><td>Night Vision Goggles — Lunettes de vision nocturne</td></tr>
+      <tr><td class="label">TIR / TIA</td><td>Tir Indirect / Tir Indirect d'Appui — artillerie, mortiers (usage lore)</td></tr>
+      <tr><td class="label">Flanking</td><td>Manœuvre d'encerclement — attaquer par le côté ou derrière</td></tr>
+      <tr><td class="label">Suppression</td><td>Tirs destinés à empêcher l'ennemi de bouger plutôt qu'à le tuer</td></tr>
+      <tr><td class="label">Hot Drop</td><td>Atterrissage sur une LZ déjà sous le feu</td></tr>
+      <tr><td class="label">Rat</td><td>Joueur ultra-furtif qui évite tout engagement et loot en silence</td></tr>
+      <tr><td class="label">Chad</td><td>Joueur lourdement équipé qui engage tous les contacts</td></tr>
+      <tr><td class="label">Tarkov Brain</td><td>Syndrome de la cupidité — rester trop longtemps pour loter et mourir</td></tr>
+    </tbody>
+  </table>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Factions IA — rappel rapide</div><div class="divider-line"></div></div>
+
+  <div class="grid-3">
+    <div class="card"><h3>LAF</h3><p><strong>Lamang Armed Forces</strong> — Forces armées locales restées sur l'île après l'Événement. Gardent les checkpoints proches de Ground Zero.</p></div>
+    <div class="card"><h3>VTS</h3><p><strong>Viper Tactical Services</strong> — L'élite IA. Équipement haut de gamme, NVG, coordination militaire professionnelle. Ne jamais les sous-estimer.</p></div>
+    <div class="card"><h3>USF</h3><p><strong>United Security Forces</strong> — Forces de sécurité privées mid-tier. Comportement plus prévisible que Viper mais armement sérieux.</p></div>
+    <div class="card"><h3>RISA</h3><p><strong>Regional Insurgent Security Alliance</strong> — Insurgés locaux. Équipement hétéroclite, tactiques moins coordonnées. Présents en zones Tier 1-2.</p></div>
+    <div class="card"><h3>TF GHOST</h3><p><strong>Task Force Ghost</strong> — Faction mystérieuse aux origines inconnues. Armement surprenant pour leur apparence. Zones mid-tier.</p></div>
+    <div class="card"><h3>CRIMSON HAND</h3><p><strong>Crimson Hand</strong> — Cartel armé. Violent et imprévisible. Souvent trouvé autour des points de trafic et d'échange de ressources.</p></div>
+  </div>
+
+  <div class="alert tip">
+    <div class="alert-icon">📖</div>
+    <div><strong>Ce glossaire est vivant.</strong> À chaque mise à jour majeure, de nouveaux termes apparaissent. Si tu rencontres un terme non listé ici, la communauté Reddit <strong>r/GrayZoneWarfare</strong> et le Discord officiel MADFINGER sont les meilleures sources de mise à jour.</div>
+  </div>
+</section>
+</main>
+<div class="page-nav"><a href="roadmap.html">← Roadmap</a><a href="index.html" class="center-home">⬛ Retour au manuel</a><span></span></div>
+<footer><p>GRAY ZONE WARFARE — MANUEL DU COMMANDANT CLOVERSHIELD<br>VERSION 0.4.2.0 — MAI 2026<br>⬛ FIN DE TRANSMISSION ⬛</p></footer>
+</body></html>

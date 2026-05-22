@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manuel du Commandant Clovershield — GZW Manuel Clovershield</title>
-<meta name="description" content="Guide complet Gray Zone Warfare — Manuel de survie rédigé par le Commandant Clovershield. Factions, médical, furtivité, vendeurs, progression.">
-<meta property="og:title" content="Manuel du Commandant Clovershield — GZW Clovershield">
-<meta property="og:description" content="Guide complet Gray Zone Warfare — Manuel de survie rédigé par le Commandant Clovershield. Factions, médical, furtivité, vendeurs, progression.">
+<title>Carte & Landing Zones — GZW Manuel Clovershield</title>
+<meta name="description" content="Lamang 42km², zones Tier, Landing Zones — navigation et déploiement GZW.">
+<meta property="og:title" content="Carte & Landing Zones — GZW Clovershield">
+<meta property="og:description" content="Lamang 42km², zones Tier, Landing Zones — navigation et déploiement GZW.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d0f0a'/><path d='M50 15 L65 40 L50 85 L35 40 Z' fill='%23d4820a'/><circle cx='50' cy='35' r='10' fill='%23e8dcc8'/></svg>">
@@ -929,7 +929,7 @@
 })();
 </script>
 <nav>
-  <a href="index.html" data-num="◈" class="active">Accueil</a>
+  <a href="index.html" data-num="◈" >Accueil</a>
   <a href="clovershield.html" data-num="◈" >Clovershield</a>
   <a href="zero-to-hero.html" data-num="✦" >Zero to Hero</a>
   <a href="intro.html" data-num="00" >Intro</a>
@@ -939,131 +939,68 @@
   <a href="ia.html" data-num="04" >IA Ennemie</a>
   <a href="inventaire.html" data-num="05" >Inventaire</a>
   <a href="vendeurs.html" data-num="06" >Vendeurs</a>
-  <a href="carte.html" data-num="07" >Carte & LZ</a>
+  <a href="carte.html" data-num="07" class="active">Carte & LZ</a>
   <a href="survie.html" data-num="08" >Survie</a>
   <a href="combat.html" data-num="09" >Combat</a>
   <a href="armes.html" data-num="10" >Armes</a>
   <a href="roadmap.html" data-num="11" >Roadmap</a>
   <a href="glossaire.html" data-num="12" >Glossaire</a>
 </nav>
-
-<header>
-  <div class="grid-bg"></div>
-  <div class="scan-line"></div>
-  <div class="header-content">
-    <div class="classification">⬛ CONFIDENTIEL — USAGE INTERNE — PMC TOUTES FACTIONS ⬛</div>
-    <h1>GRAY ZONE<br><span>WARFARE</span></h1>
-    <div class="subtitle">
-      MANUEL DE SURVIE ET D'OPÉRATIONS<br>
-      Rédigé par le Commandant Clovershield — Île de Lamang<br>
-      À l'usage exclusif des nouvelles recrues
+<div class="breadcrumb"><a href="index.html">Manuel</a><span>›</span>Carte & LZ</div>
+<main>
+<section class="chapter">
+<div class="chapter-header">
+    <div class="chapter-num">07</div>
+    <div class="chapter-title-block">
+      <div class="chapter-tag">Navigation // Déploiement</div>
+      <h2 class="chapter-title">Carte de Lamang & Zones d'Atterrissage</h2>
+      <p class="chapter-subtitle">42 km². Tu ne les exploreras pas en une vie. Commence intelligemment.</p>
     </div>
-    <div class="version-badge">⚑ Version 0.4.2.0 — Mise à jour Spearhead — Mai 2026</div>
-  </div>
-  <div class="scroll-hint">↓ CHOISIR UN CHAPITRE ↓</div>
-</header>
-
-<div style="max-width:1400px;margin:0 auto;padding:5rem 8vw;">
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:4rem;">
-    <a href="clovershield.html" style="display:block;text-decoration:none;border:1px solid rgba(155,58,26,0.35);padding:2rem;background:rgba(155,58,26,0.05);transition:all 0.25s;position:relative;overflow:hidden;" onmouseover="this.style.borderColor='rgba(155,58,26,0.7)'" onmouseout="this.style.borderColor='rgba(155,58,26,0.35)'">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;letter-spacing:0.4em;color:var(--rust);margin-bottom:0.8rem;">⬛ DOSSIER CLASSIFIÉ</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--paper);letter-spacing:0.06em;">Commandant Clovershield</div>
-      <div style="font-size:0.82rem;color:var(--sand);opacity:0.7;margin-top:0.5rem;line-height:1.5;">Qui est l'auteur de ce manuel ? Quels secrets lie-t-il à Ground Zero ?</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--rust);margin-top:1rem;">LIRE LE DOSSIER →</div>
-    </a>
-    <a href="zero-to-hero.html" style="display:block;text-decoration:none;border:1px solid rgba(212,130,10,0.35);padding:2rem;background:rgba(212,130,10,0.04);transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(212,130,10,0.7)'" onmouseout="this.style.borderColor='rgba(212,130,10,0.35)'">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;letter-spacing:0.4em;color:var(--amber);margin-bottom:0.8rem;">✦ GUIDE DE PROGRESSION</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--paper);letter-spacing:0.06em;">Zero to Hero</div>
-      <div style="font-size:0.82rem;color:var(--sand);opacity:0.7;margin-top:0.5rem;line-height:1.5;">Quoi faire, quand le faire. Du premier déploiement au rang d'élite.</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--amber);margin-top:1rem;">COMMENCER LA PROGRESSION →</div>
-    </a>
   </div>
 
-  <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.4em;color:var(--rust);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;">CHAPITRES DU MANUEL <span style="flex:1;height:1px;background:rgba(139,115,85,0.2);display:block;"></span></div>
-
-  <div class="chapter-grid">
-    <a href="intro.html" class="chapter-card" data-num="00">
-      <div class="cc-tag">Orientation</div>
-      <div class="cc-title">Introduction</div>
-      <div class="cc-desc">Comprendre GZW, ses modes, sa philosophie. Ce que ce jeu n'est pas.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="factions.html" class="chapter-card" data-num="01">
-      <div class="cc-tag">Décision fondatrice</div>
-      <div class="cc-title">Factions</div>
-      <div class="cc-desc">LRI, Mithras, Crimson Shield. Un choix définitif qui change tout.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="medical.html" class="chapter-card" data-num="02">
-      <div class="cc-tag">Survie critique</div>
-      <div class="cc-title">Système Médical</div>
-      <div class="cc-desc">Saignements, fractures, coma. Le système le plus complexe du jeu.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="furtivite.html" class="chapter-card" data-num="03">
-      <div class="cc-tag">Tactique</div>
-      <div class="cc-title">Furtivité</div>
-      <div class="cc-desc">Visibilité, son, posture, météo. Être vu c'est mourir.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="ia.html" class="chapter-card" data-num="04">
-      <div class="cc-tag">Renseignement</div>
-      <div class="cc-title">IA Ennemie</div>
-      <div class="cc-desc">7 factions, 7 comportements. Analyse complète des ennemis.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="inventaire.html" class="chapter-card" data-num="05">
-      <div class="cc-tag">Logistique</div>
-      <div class="cc-title">Inventaire & Loot</div>
-      <div class="cc-desc">Lockbox, poids, valeur par slot. Tout ce que tu portes peut être perdu.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="vendeurs.html" class="chapter-card" data-num="06">
-      <div class="cc-tag">Économie</div>
-      <div class="cc-title">Vendeurs</div>
-      <div class="cc-desc">Handshake, Gunny, Vulture... Comprendre la progression par réputation.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="carte.html" class="chapter-card" data-num="07">
-      <div class="cc-tag">Navigation</div>
-      <div class="cc-title">Carte & LZ</div>
-      <div class="cc-desc">42 km² de Lamang. Zones Tier, Landing Zones, déploiement tactique.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="survie.html" class="chapter-card" data-num="08">
-      <div class="cc-tag">Physiologie</div>
-      <div class="cc-title">Survie</div>
-      <div class="cc-desc">Hydratation, énergie, buffs alimentaires. Le corps comme outil.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="combat.html" class="chapter-card" data-num="09">
-      <div class="cc-tag">Doctrine</div>
-      <div class="cc-title">Combat Avancé</div>
-      <div class="cc-desc">Angles, chargeurs, discipline d'extraction. Ce qui tue et ce qui sauve.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="armes.html" class="chapter-card" data-num="10">
-      <div class="cc-tag">Équipement</div>
-      <div class="cc-title">Armes & Balistique</div>
-      <div class="cc-desc">Modding, pénétration, recul, ergonomie. Construire l'arme parfaite.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="roadmap.html" class="chapter-card" data-num="11">
-      <div class="cc-tag">Avenir</div>
-      <div class="cc-title">Roadmap</div>
-      <div class="cc-desc">v0.5 à v1.0. Ce qui arrive sur Lamang et comment s'y préparer.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="glossaire.html" class="chapter-card" data-num="12">
-      <div class="cc-tag">Référence</div>
-      <div class="cc-title">Glossaire</div>
-      <div class="cc-desc">Tous les termes militaires, abréviations GZW et jargon de Lamang.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
+  <div class="briefing">
+    Lamang est divisée en <em>secteurs de difficulté croissante</em>, contrôlés par différentes factions IA. Comprendre la structure géographique est aussi important que de savoir tirer. L'hélicoptère est ton <em>cordon ombilical</em> — sans Landing Zone (LZ) débloquée, tu es condamné à de longues marches mortelles.
   </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Structure de la carte</div><div class="divider-line"></div></div>
+
+  <div class="grid-3">
+    <div class="card">
+      <span class="card-icon">🟢</span>
+      <h3>Tier 1 — Zones de Départ</h3>
+      <p>Autour de ta base (Pha Lang / Nam Thaven / Kiu Vongsa). Ennemis de faible niveau, missions introductives. <strong>Starter Towns partiellement masquées</strong> sur la carte des factions rivales — zone tampon pour les débutants.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🟡</span>
+      <h3>Tier 2 — Zones Intermédiaires</h3>
+      <p>Factions IA plus coordonnées. Points d'intérêt contestés entre PMCs jouables. Les LZ "chaudes" commencent ici — <strong>plusieurs factions peuvent atterrir simultanément</strong> au même endroit. Tensions PvP maximales.</p>
+    </div>
+    <div class="card danger">
+      <span class="card-icon">🔴</span>
+      <h3>Tier 3 — Zones Nord / End-Game</h3>
+      <p>Fort Narith, Midnight Sapphire, Hunter's Paradise. Élites IA et factions rivales omniprésentes. <strong>Loot tier 4+, missions end-game.</strong> N'y va pas seul avant Réputation Niveau 2 minimum.</p>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Le système de Landing Zones</div><div class="divider-line"></div></div>
+
+  <div class="briefing">
+    Les <em>Landing Zones (LZ)</em> sont les points d'atterrissage et d'extraction de l'hélicoptère. Ce sont tes artères logistiques. Sans LZ débloquée dans une zone, tu es obligé de rentrer à pied — ou d'appeler l'hélico depuis une LZ distante et de marcher jusqu'à ta position.
+  </div>
+
+  <ol class="priority-list">
+    <li><span class="priority-num">1</span><div><strong class="hl-paper">Débloquer une LZ :</strong> Tu dois <em>physiquement entrer dans un rayon d'environ 100 mètres</em> autour de la LZ. Elle se débloque automatiquement et devient accessible depuis ton menu de déploiement.</div></li>
+    <li><span class="priority-num">2</span><div><strong class="hl-paper">15 LZ Faction-Locked :</strong> 5 LZ par faction autour de ta base. Zones sécurisées où les factions rivales ne peuvent pas atterrir ni extraire. Ton sanctuaire.</div></li>
+    <li><span class="priority-num">3</span><div><strong class="hl-paper">LZ "Chaudes" :</strong> En dehors des zones faction-locked, toutes les LZ sont accessibles à tout le monde. Toujours couvrir la LZ avant d'atterrir — une embuscade à l'arrivée est une mort garantie.</div></li>
+    <li><span class="priority-num">4</span><div><strong class="hl-paper">Priorité d'exploration :</strong> Lors de chaque déploiement, <em>débloquer une nouvelle LZ</em> devrait être un objectif secondaire permanent. Plus tu as de LZ, plus ton réseau logistique est efficace.</div></li>
+  </ol>
+</section>
+</main>
+<div class="page-nav">
+  <a href="vendeurs.html">← Vendeurs</a>
+  <a href="index.html" class="center-home">⬛ Retour au manuel</a>
+  <a href="survie.html">Survie →</a>
 </div>
-
 <footer>
   <p>GRAY ZONE WARFARE — MANUEL DU COMMANDANT CLOVERSHIELD<br>
   VERSION 0.4.2.0 — MAI 2026 — SPEARHEAD UPDATE<br>

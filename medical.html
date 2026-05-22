@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manuel du Commandant Clovershield — GZW Manuel Clovershield</title>
-<meta name="description" content="Guide complet Gray Zone Warfare — Manuel de survie rédigé par le Commandant Clovershield. Factions, médical, furtivité, vendeurs, progression.">
-<meta property="og:title" content="Manuel du Commandant Clovershield — GZW Clovershield">
-<meta property="og:description" content="Guide complet Gray Zone Warfare — Manuel de survie rédigé par le Commandant Clovershield. Factions, médical, furtivité, vendeurs, progression.">
+<title>Système Médical — GZW Manuel Clovershield</title>
+<meta name="description" content="Saignements, fractures, coma, réanimation — guide complet du système médical GZW.">
+<meta property="og:title" content="Système Médical — GZW Clovershield">
+<meta property="og:description" content="Saignements, fractures, coma, réanimation — guide complet du système médical GZW.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d0f0a'/><path d='M50 15 L65 40 L50 85 L35 40 Z' fill='%23d4820a'/><circle cx='50' cy='35' r='10' fill='%23e8dcc8'/></svg>">
@@ -929,12 +929,12 @@
 })();
 </script>
 <nav>
-  <a href="index.html" data-num="◈" class="active">Accueil</a>
+  <a href="index.html" data-num="◈" >Accueil</a>
   <a href="clovershield.html" data-num="◈" >Clovershield</a>
   <a href="zero-to-hero.html" data-num="✦" >Zero to Hero</a>
   <a href="intro.html" data-num="00" >Intro</a>
   <a href="factions.html" data-num="01" >Factions</a>
-  <a href="medical.html" data-num="02" >Médical</a>
+  <a href="medical.html" data-num="02" class="active">Médical</a>
   <a href="furtivite.html" data-num="03" >Furtivité</a>
   <a href="ia.html" data-num="04" >IA Ennemie</a>
   <a href="inventaire.html" data-num="05" >Inventaire</a>
@@ -946,124 +946,135 @@
   <a href="roadmap.html" data-num="11" >Roadmap</a>
   <a href="glossaire.html" data-num="12" >Glossaire</a>
 </nav>
-
-<header>
-  <div class="grid-bg"></div>
-  <div class="scan-line"></div>
-  <div class="header-content">
-    <div class="classification">⬛ CONFIDENTIEL — USAGE INTERNE — PMC TOUTES FACTIONS ⬛</div>
-    <h1>GRAY ZONE<br><span>WARFARE</span></h1>
-    <div class="subtitle">
-      MANUEL DE SURVIE ET D'OPÉRATIONS<br>
-      Rédigé par le Commandant Clovershield — Île de Lamang<br>
-      À l'usage exclusif des nouvelles recrues
+<div class="breadcrumb"><a href="index.html">Manuel</a><span>›</span>Système Médical</div>
+<main>
+<section class="chapter">
+<div class="chapter-header">
+    <div class="chapter-num">02</div>
+    <div class="chapter-title-block">
+      <div class="chapter-tag">Combat Medical // Survie Critique</div>
+      <h2 class="chapter-title">Le Système Médical — Diagnostiquer Avant De Mourir</h2>
+      <p class="chapter-subtitle">Ici, le bon soin au bon moment. Pas le mauvais soin trop tard.</p>
     </div>
-    <div class="version-badge">⚑ Version 0.4.2.0 — Mise à jour Spearhead — Mai 2026</div>
-  </div>
-  <div class="scroll-hint">↓ CHOISIR UN CHAPITRE ↓</div>
-</header>
-
-<div style="max-width:1400px;margin:0 auto;padding:5rem 8vw;">
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:4rem;">
-    <a href="clovershield.html" style="display:block;text-decoration:none;border:1px solid rgba(155,58,26,0.35);padding:2rem;background:rgba(155,58,26,0.05);transition:all 0.25s;position:relative;overflow:hidden;" onmouseover="this.style.borderColor='rgba(155,58,26,0.7)'" onmouseout="this.style.borderColor='rgba(155,58,26,0.35)'">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;letter-spacing:0.4em;color:var(--rust);margin-bottom:0.8rem;">⬛ DOSSIER CLASSIFIÉ</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--paper);letter-spacing:0.06em;">Commandant Clovershield</div>
-      <div style="font-size:0.82rem;color:var(--sand);opacity:0.7;margin-top:0.5rem;line-height:1.5;">Qui est l'auteur de ce manuel ? Quels secrets lie-t-il à Ground Zero ?</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--rust);margin-top:1rem;">LIRE LE DOSSIER →</div>
-    </a>
-    <a href="zero-to-hero.html" style="display:block;text-decoration:none;border:1px solid rgba(212,130,10,0.35);padding:2rem;background:rgba(212,130,10,0.04);transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(212,130,10,0.7)'" onmouseout="this.style.borderColor='rgba(212,130,10,0.35)'">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;letter-spacing:0.4em;color:var(--amber);margin-bottom:0.8rem;">✦ GUIDE DE PROGRESSION</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--paper);letter-spacing:0.06em;">Zero to Hero</div>
-      <div style="font-size:0.82rem;color:var(--sand);opacity:0.7;margin-top:0.5rem;line-height:1.5;">Quoi faire, quand le faire. Du premier déploiement au rang d'élite.</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--amber);margin-top:1rem;">COMMENCER LA PROGRESSION →</div>
-    </a>
   </div>
 
-  <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.4em;color:var(--rust);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;">CHAPITRES DU MANUEL <span style="flex:1;height:1px;background:rgba(139,115,85,0.2);display:block;"></span></div>
-
-  <div class="chapter-grid">
-    <a href="intro.html" class="chapter-card" data-num="00">
-      <div class="cc-tag">Orientation</div>
-      <div class="cc-title">Introduction</div>
-      <div class="cc-desc">Comprendre GZW, ses modes, sa philosophie. Ce que ce jeu n'est pas.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="factions.html" class="chapter-card" data-num="01">
-      <div class="cc-tag">Décision fondatrice</div>
-      <div class="cc-title">Factions</div>
-      <div class="cc-desc">LRI, Mithras, Crimson Shield. Un choix définitif qui change tout.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="medical.html" class="chapter-card" data-num="02">
-      <div class="cc-tag">Survie critique</div>
-      <div class="cc-title">Système Médical</div>
-      <div class="cc-desc">Saignements, fractures, coma. Le système le plus complexe du jeu.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="furtivite.html" class="chapter-card" data-num="03">
-      <div class="cc-tag">Tactique</div>
-      <div class="cc-title">Furtivité</div>
-      <div class="cc-desc">Visibilité, son, posture, météo. Être vu c'est mourir.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="ia.html" class="chapter-card" data-num="04">
-      <div class="cc-tag">Renseignement</div>
-      <div class="cc-title">IA Ennemie</div>
-      <div class="cc-desc">7 factions, 7 comportements. Analyse complète des ennemis.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="inventaire.html" class="chapter-card" data-num="05">
-      <div class="cc-tag">Logistique</div>
-      <div class="cc-title">Inventaire & Loot</div>
-      <div class="cc-desc">Lockbox, poids, valeur par slot. Tout ce que tu portes peut être perdu.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="vendeurs.html" class="chapter-card" data-num="06">
-      <div class="cc-tag">Économie</div>
-      <div class="cc-title">Vendeurs</div>
-      <div class="cc-desc">Handshake, Gunny, Vulture... Comprendre la progression par réputation.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="carte.html" class="chapter-card" data-num="07">
-      <div class="cc-tag">Navigation</div>
-      <div class="cc-title">Carte & LZ</div>
-      <div class="cc-desc">42 km² de Lamang. Zones Tier, Landing Zones, déploiement tactique.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="survie.html" class="chapter-card" data-num="08">
-      <div class="cc-tag">Physiologie</div>
-      <div class="cc-title">Survie</div>
-      <div class="cc-desc">Hydratation, énergie, buffs alimentaires. Le corps comme outil.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="combat.html" class="chapter-card" data-num="09">
-      <div class="cc-tag">Doctrine</div>
-      <div class="cc-title">Combat Avancé</div>
-      <div class="cc-desc">Angles, chargeurs, discipline d'extraction. Ce qui tue et ce qui sauve.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="armes.html" class="chapter-card" data-num="10">
-      <div class="cc-tag">Équipement</div>
-      <div class="cc-title">Armes & Balistique</div>
-      <div class="cc-desc">Modding, pénétration, recul, ergonomie. Construire l'arme parfaite.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="roadmap.html" class="chapter-card" data-num="11">
-      <div class="cc-tag">Avenir</div>
-      <div class="cc-title">Roadmap</div>
-      <div class="cc-desc">v0.5 à v1.0. Ce qui arrive sur Lamang et comment s'y préparer.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
-    <a href="glossaire.html" class="chapter-card" data-num="12">
-      <div class="cc-tag">Référence</div>
-      <div class="cc-title">Glossaire</div>
-      <div class="cc-desc">Tous les termes militaires, abréviations GZW et jargon de Lamang.</div>
-      <span class="cc-arrow">ACCÉDER →</span>
-    </a>
+  <div class="briefing">
+    Recrue, oublie le bouton unique de soin. Sur Lamang, le corps se brise de <em>plusieurs façons indépendantes</em> et chacune exige un <strong>traitement spécifique</strong>. Appliquer un pansement sur un os cassé ne sert à rien. Ignorer un saignement lourd pendant 10 secondes peut te mettre en coma.<br><br>
+    Le système suit trois axes : le <em>volume sanguin</em>, l'<em>intégrité des os</em>, et l'<em>état des organes</em>. Lis ce qui suit comme si ta vie en dépendait — parce que c'est littéralement le cas.
   </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Types de blessures & traitements</div><div class="divider-line"></div></div>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Blessure</th>
+        <th>Indicateur UI</th>
+        <th>Effet sur le corps</th>
+        <th>Traitement requis</th>
+        <th>Urgence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label">Saignement Léger</td>
+        <td>🩸 1 goutte</td>
+        <td>Perte de sang lente. Tolérable pendant un bref combat.</td>
+        <td>Bandage</td>
+        <td><span class="badge amber">Modérée</span></td>
+      </tr>
+      <tr>
+        <td class="label">Saignement Lourd</td>
+        <td>🩸🩸 2+ gouttes</td>
+        <td>Perte de sang rapide. <strong>Coma en quelques secondes.</strong> Peut se cumuler (plusieurs membres).</td>
+        <td><strong>Garrot EN PREMIER</strong>, puis bandage après</td>
+        <td><span class="badge red">CRITIQUE</span></td>
+      </tr>
+      <tr>
+        <td class="label">Fracture</td>
+        <td>🦴 icône jaune</td>
+        <td>Jambe : sprint impossible, vitesse réduite drastiquement. Bras : tremblement d'arme extrême.</td>
+        <td>Attelle (Splint)</td>
+        <td><span class="badge amber">Haute</span></td>
+      </tr>
+      <tr>
+        <td class="label">Dommage aux Organes</td>
+        <td>Icône organe rouge</td>
+        <td>Peut provoquer hémorragie interne, mort différée.</td>
+        <td>Kit de chirurgie de terrain</td>
+        <td><span class="badge red">CRITIQUE</span></td>
+      </tr>
+      <tr>
+        <td class="label">Douleur</td>
+        <td>Effets visuels flous</td>
+        <td>Vision altérée, précision réduite.</td>
+        <td>Antidouleurs (Painkillers)</td>
+        <td><span class="badge green">Faible</span></td>
+      </tr>
+      <tr>
+        <td class="label">Volume Sanguin Bas</td>
+        <td>Écran N&B + flou</td>
+        <td>État "Misérable" : vision quasi nulle, stamina effondrée.</td>
+        <td>Poche de sang (Blood Bag)</td>
+        <td><span class="badge red">CRITIQUE</span></td>
+      </tr>
+      <tr>
+        <td class="label">Intoxication</td>
+        <td>Nausée, flou</td>
+        <td>Vision perturbée, effets négatifs en cascade.</td>
+        <td>Charbon Activé</td>
+        <td><span class="badge amber">Modérée</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert danger">
+    <div class="alert-icon">🩸</div>
+    <div><strong>Les saignements se cumulent.</strong> Si tu prends des balles sur 3 membres différents, tu peux avoir 3 saignements actifs simultanément. L'UI n'en affiche parfois qu'un seul. <strong>Ouvre toujours l'écran de santé complet</strong> après un échange de tirs pour vérifier chaque membre.</div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Protocole de soin au combat</div><div class="divider-line"></div></div>
+
+  <ol class="priority-list">
+    <li><span class="priority-num">1</span><div><strong class="hl-paper">Stopper le saignement lourd immédiatement.</strong> Garrot sur le membre concerné. Pas de bandage d'abord — le garrot est 3x plus rapide à appliquer sous stress. Touche <strong>H</strong> en combat si configuré.</div></li>
+    <li><span class="priority-num">2</span><div><strong class="hl-paper">Mettre le couvert.</strong> Ne soigne jamais à découvert. Chaque animation de soin peut être annulée par un clic droit — utilise-le si tu es pris sous le feu.</div></li>
+    <li><span class="priority-num">3</span><div><strong class="hl-paper">Traiter les saignements légers restants</strong> avec des bandages, membre par membre.</div></li>
+    <li><span class="priority-num">4</span><div><strong class="hl-paper">Fracture ?</strong> Attelle immédiate si tu dois te déplacer. Une jambe cassée = cible facile.</div></li>
+    <li><span class="priority-num">5</span><div><strong class="hl-paper">Volume sanguin.</strong> Si l'écran vire au noir et blanc, c'est une urgence absolue. Poche de sang.</div></li>
+    <li><span class="priority-num">6</span><div><strong class="hl-paper">Organes et douleur</strong> en dernier, une fois en sécurité.</div></li>
+  </ol>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Le Coma & la Réanimation</div><div class="divider-line"></div></div>
+
+  <div class="grid-2">
+    <div class="card danger">
+      <span class="card-icon">💀</span>
+      <h3>Quand Tu Entres En Coma</h3>
+      <p>Si ton volume sanguin tombe trop bas, tu perds connaissance. Tu n'es <strong>pas mort</strong> — mais tu es totalement impuissant. Tu ne peux rien faire seul. Seul un coéquipier peut te <strong>traîner à couvert</strong> puis te <strong>ranimer</strong>. En solo, c'est la mort quasi certaine.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🤝</span>
+      <h3>Réanimer Un Coéquipier</h3>
+      <p>Approche le corps, utilise l'invite d'interaction pour le traîner hors de la zone de danger. <strong>Soigner en terrain découvert = vous perdez tous les deux.</strong> Une fois à couvert, applique les soins nécessaires pour le stabiliser. Travaillez toujours par équipe — le médic reste en retrait.</p>
+    </div>
+  </div>
+
+  <div class="alert tip">
+    <div class="alert-icon">💡</div>
+    <div><strong>Astuce pro :</strong> Garde toujours une <strong>petite poche de sang dans ta Lockbox sécurisée</strong>. Même si tu perds tout ton équipement, tu pourras restaurer ta vision et ta stamina après un combat difficile. C'est la stratégie des vétérans en 2026.</div>
+  </div>
+
+  <div class="alert tip">
+    <div class="alert-icon">⌨️</div>
+    <div><strong>Raccourci essentiel :</strong> En maintenant <strong>H</strong>, tu accèdes au menu rapide de soin. Configure ton item prioritaire (garrot ou seringue d'urgence). Un simple appui sur <strong>H</strong> en combat appliquera automatiquement le traitement contre les saignements lourds.</div>
+  </div>
+</section>
+</main>
+<div class="page-nav">
+  <a href="factions.html">← Factions</a>
+  <a href="index.html" class="center-home">⬛ Retour au manuel</a>
+  <a href="furtivite.html">Furtivité →</a>
 </div>
-
 <footer>
   <p>GRAY ZONE WARFARE — MANUEL DU COMMANDANT CLOVERSHIELD<br>
   VERSION 0.4.2.0 — MAI 2026 — SPEARHEAD UPDATE<br>
