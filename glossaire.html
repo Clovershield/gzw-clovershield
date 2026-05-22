@@ -865,8 +865,240 @@
     .chapter-grid { grid-template-columns: 1fr; }
     .page-nav { flex-direction: column; text-align: center; }
   }
+
+/* ── SEARCH PAGE ──────────────────────────── */
+.search-bar-wrap {
+  position: relative;
+  margin: 2rem 0;
+}
+.search-input {
+  width: 100%;
+  background: rgba(13,15,10,0.8);
+  border: 1px solid rgba(139,115,85,0.4);
+  border-bottom: 2px solid var(--amber);
+  color: var(--paper);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  padding: 1rem 3.5rem 1rem 1.5rem;
+  outline: none;
+  transition: border-color 0.2s;
+  caret-color: var(--amber);
+}
+.search-input:focus { border-color: var(--amber); background: rgba(26,29,22,0.9); }
+.search-input::placeholder { color: rgba(139,115,85,0.4); font-size: 0.85rem; }
+.search-icon {
+  position: absolute; right: 1.2rem; top: 50%;
+  transform: translateY(-50%);
+  color: var(--amber); font-size: 1.1rem;
+  pointer-events: none; opacity: 0.6;
+}
+.search-count {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.3em;
+  color: var(--khaki); margin-bottom: 1.5rem;
+  min-height: 1.2em;
+}
+.search-results { list-style: none; }
+.search-result {
+  border: 1px solid rgba(139,115,85,0.15);
+  margin-bottom: 0.8rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.search-result:hover { border-color: rgba(212,130,10,0.4); background: rgba(212,130,10,0.03); }
+.search-result a {
+  display: block; padding: 1.4rem 1.8rem;
+  text-decoration: none; color: inherit;
+}
+.sr-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem; color: var(--paper);
+  letter-spacing: 0.06em; margin-bottom: 0.3rem;
+}
+.sr-title mark {
+  background: rgba(212,130,10,0.25);
+  color: var(--amber); border-radius: 2px;
+  padding: 0 2px;
+}
+.sr-page {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 0.3em;
+  color: var(--rust); margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+.sr-excerpt {
+  font-size: 0.82rem; color: var(--sand);
+  opacity: 0.75; line-height: 1.6;
+}
+.sr-excerpt mark {
+  background: rgba(212,130,10,0.2);
+  color: var(--amber); border-radius: 2px;
+  padding: 0 2px;
+}
+.search-empty {
+  text-align: center; padding: 4rem 2rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.3em;
+  color: rgba(139,115,85,0.3);
+}
+.search-shortcuts {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.shortcut-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 0.2em;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid rgba(139,115,85,0.2);
+  color: var(--khaki); cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.shortcut-tag:hover { border-color: var(--amber); color: var(--amber); }
+
+/* ── SEARCH OVERLAY (global, all pages) ─── */
+#search-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 8vh;
+}
+#search-overlay.open { display: flex; }
+.search-overlay-box {
+  width: 100%; max-width: 680px;
+  background: #0d0f0a;
+  border: 1px solid rgba(212,130,10,0.4);
+  padding: 1.5rem;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.overlay-close {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.3em;
+  color: var(--khaki); text-align: right;
+  margin-bottom: 1rem; cursor: pointer;
+}
+.overlay-close:hover { color: var(--amber); }
+#search-overlay .search-input { font-size: 1rem; }
+#search-overlay .search-results { margin-top: 1rem; }
+
+
+/* ── NAV SEARCH ─────────────────────────────── */
+.nav-search-wrap {
+  display: flex; align-items: center;
+  margin-left: auto; padding: 0 0.5rem;
+  flex-shrink: 0;
+}
+.nav-search-btn {
+  background: none; border: none;
+  color: var(--khaki); cursor: pointer;
+  font-size: 0.85rem; padding: 0.4rem 0.6rem;
+  transition: color 0.2s;
+  line-height: 1;
+}
+.nav-search-btn:hover { color: var(--amber); }
+.nav-search-panel {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: rgba(13,15,10,0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--amber);
+  z-index: 200;
+  padding: 0.8rem 8vw;
+  display: none;
+  flex-direction: column;
+  gap: 0;
+}
+.nav-search-panel.open { display: flex; }
+.nav-search-row {
+  display: flex; align-items: center; gap: 1rem;
+}
+.nav-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--paper);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  padding: 0.6rem 0;
+  outline: none;
+  caret-color: var(--amber);
+}
+.nav-search-input::placeholder {
+  color: rgba(139,115,85,0.4);
+  font-size: 0.8rem;
+}
+.nav-search-close {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.25em;
+  color: var(--khaki); cursor: pointer;
+  background: none; border: none;
+  padding: 0.3rem 0.5rem;
+  white-space: nowrap;
+}
+.nav-search-close:hover { color: var(--amber); }
+.nav-search-results {
+  list-style: none;
+  max-height: 60vh;
+  overflow-y: auto;
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(139,115,85,0.15);
+  padding-top: 0.5rem;
+}
+.nav-sr-item a {
+  display: flex; align-items: baseline;
+  gap: 1rem; padding: 0.6rem 0.5rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(139,115,85,0.06);
+  transition: background 0.15s;
+}
+.nav-sr-item a:hover { background: rgba(212,130,10,0.05); }
+.nav-sr-page {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.5rem; letter-spacing: 0.25em;
+  color: var(--rust); text-transform: uppercase;
+  flex-shrink: 0; min-width: 90px;
+}
+.nav-sr-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem; color: var(--paper);
+  letter-spacing: 0.05em;
+}
+.nav-sr-title mark, .nav-sr-excerpt mark {
+  background: rgba(212,130,10,0.25);
+  color: var(--amber); border-radius: 2px; padding: 0 2px;
+}
+.nav-sr-excerpt {
+  font-size: 0.75rem; color: var(--sand);
+  opacity: 0.65; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+.nav-search-empty {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.3em;
+  color: rgba(139,115,85,0.3); padding: 1rem 0.5rem;
+  text-align: center;
+}
+
 </style>
 </head><body>
+
+    <div class="search-bar-wrap" style="margin:0 0 0.5rem;">
+      <input id="search-overlay-input" class="search-input" type="text" 
+        placeholder="Rechercher dans le manuel..." autocomplete="off" spellcheck="false">
+      <span class="search-icon">🔍</span>
+    </div>
+    <div id="search-overlay-count" class="search-count"></div>
+    <ul id="search-overlay-results" class="search-results"></ul>
+  </div>
+</div>
+
 
 <div id="progress-bar"></div>
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
@@ -936,7 +1168,9 @@
   <a href="combat.html" data-num="09" >Combat</a>
   <a href="armes.html" data-num="10" >Armes</a>
   <a href="roadmap.html" data-num="11" >Roadmap</a>
+  <a href="recherche.html" data-num="🔍">Recherche</a>
   <a href="glossaire.html" data-num="12" class='active'>Glossaire</a>
+  <div class="nav-search-wrap"><button class="nav-search-btn" id="nav-search-btn" title="Rechercher">🔍</button></div>
 </nav>
 <div class="breadcrumb"><a href="index.html">Manuel</a><span>›</span>Glossaire</div>
 <main>
