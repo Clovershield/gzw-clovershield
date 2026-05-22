@@ -3,12 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carte & Landing Zones — GZW Manuel Clovershield</title>
-<meta name="description" content="Lamang 42km², zones Tier, Landing Zones — navigation et déploiement GZW.">
-<meta property="og:title" content="Carte & Landing Zones — GZW Clovershield">
-<meta property="og:description" content="Lamang 42km², zones Tier, Landing Zones — navigation et déploiement GZW.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
+<title>Carte de Lamang — GZW Manuel Clovershield</title>
+<meta name="description" content="Carte interactive de l'île de Lamang — zones Tier, Landing Zones, POIs, bases de faction. Gray Zone Warfare.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d0f0a'/><path d='M50 15 L65 40 L50 85 L35 40 Z' fill='%23d4820a'/><circle cx='50' cy='35' r='10' fill='%23e8dcc8'/></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -204,7 +200,7 @@
   }
 
   /* MAIN */
-  main { max-width: 1400px; margin: 0 auto; padding: 2rem 8vw 0; }
+  main { max-width: 1400px; margin: 0 auto; padding: 0 8vw; }
 
   /* SECTION */
   .chapter {
@@ -872,6 +868,121 @@
     .page-nav { flex-direction: column; text-align: center; }
   }
 
+
+/* ── CARTE INTERACTIVE ─────────────────────────────── */
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto;
+  user-select: none;
+}
+.map-svg-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  background: #0a0c08;
+  border: 1px solid rgba(139,115,85,0.3);
+  overflow: hidden;
+  cursor: crosshair;
+}
+.map-svg-container svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* zones */
+.map-zone { transition: opacity 0.2s; cursor: pointer; }
+.map-zone:hover { opacity: 0.85; }
+
+/* POI markers */
+.poi-marker { cursor: pointer; }
+.poi-dot { transition: r 0.15s, filter 0.15s; }
+.poi-marker:hover .poi-dot { filter: brightness(1.5); }
+.poi-marker.active .poi-dot { filter: brightness(2) drop-shadow(0 0 4px var(--amber)); }
+
+/* LZ markers */
+.lz-marker { cursor: pointer; opacity: 0.7; transition: opacity 0.15s; }
+.lz-marker:hover, .lz-marker.active { opacity: 1; }
+
+/* Tooltip */
+.map-tooltip {
+  position: absolute;
+  background: rgba(13,15,10,0.97);
+  border: 1px solid var(--amber);
+  padding: 1rem 1.4rem;
+  min-width: 200px;
+  max-width: 280px;
+  pointer-events: none;
+  z-index: 50;
+  display: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.map-tooltip.visible { display: block; }
+.map-tooltip .tt-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.5rem; letter-spacing: 0.35em;
+  color: var(--rust); text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.map-tooltip .tt-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem; color: var(--paper);
+  letter-spacing: 0.06em; line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.map-tooltip .tt-desc {
+  font-size: 0.78rem; color: var(--sand);
+  line-height: 1.55; opacity: 0.85;
+}
+.map-tooltip .tt-lzs {
+  margin-top: 0.6rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.15em;
+  color: var(--amber); opacity: 0.8;
+}
+
+/* Legend */
+.map-legend {
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  margin-top: 1.2rem; padding: 1rem 1.2rem;
+  border: 1px solid rgba(139,115,85,0.2);
+  background: rgba(13,15,10,0.6);
+}
+.legend-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.2em;
+  color: var(--khaki); text-transform: uppercase;
+}
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.legend-rect { width: 14px; height: 10px; flex-shrink: 0; opacity: 0.6; }
+
+/* Filter buttons */
+.map-filters {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.map-filter-btn {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 0.2em;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(139,115,85,0.3);
+  background: transparent; color: var(--khaki);
+  cursor: pointer; text-transform: uppercase;
+  transition: all 0.2s;
+}
+.map-filter-btn:hover, .map-filter-btn.active {
+  border-color: var(--amber); color: var(--amber);
+  background: rgba(212,130,10,0.07);
+}
+
+@media (max-width: 768px) {
+  .map-tooltip { min-width: 160px; max-width: 220px; font-size: 0.85em; }
+}
+
 </style>
 </head>
 <body>
@@ -939,72 +1050,427 @@
   <a href="ia.html" data-num="04" >IA Ennemie</a>
   <a href="inventaire.html" data-num="05" >Inventaire</a>
   <a href="vendeurs.html" data-num="06" >Vendeurs</a>
-  <a href="carte.html" data-num="07" class="active">Carte & LZ</a>
+  <a href="carte.html" data-num="07" class='active'>Carte & LZ</a>
   <a href="survie.html" data-num="08" >Survie</a>
   <a href="combat.html" data-num="09" >Combat</a>
   <a href="armes.html" data-num="10" >Armes</a>
   <a href="roadmap.html" data-num="11" >Roadmap</a>
   <a href="glossaire.html" data-num="12" >Glossaire</a>
 </nav>
-<div class="breadcrumb"><a href="index.html">Manuel</a><span>›</span>Carte & LZ</div>
-<main>
-<section class="chapter">
-<div class="chapter-header">
+<div class="breadcrumb"><a href="index.html">Manuel</a><span>›</span>Carte & Landing Zones</div>
+
+<main style="padding-top:2rem;">
+<section class="chapter" style="padding-top:3rem;">
+
+  <div class="chapter-header">
     <div class="chapter-num">07</div>
     <div class="chapter-title-block">
-      <div class="chapter-tag">Navigation // Déploiement</div>
-      <h2 class="chapter-title">Carte de Lamang & Zones d'Atterrissage</h2>
-      <p class="chapter-subtitle">42 km². Tu ne les exploreras pas en une vie. Commence intelligemment.</p>
+      <div class="chapter-tag">Navigation // Carte Tactique Interactive</div>
+      <h2 class="chapter-title">Carte de Lamang</h2>
+      <p class="chapter-subtitle">Clique sur une zone ou une LZ pour obtenir les informations tactiques.</p>
     </div>
   </div>
 
   <div class="briefing">
-    Lamang est divisée en <em>secteurs de difficulté croissante</em>, contrôlés par différentes factions IA. Comprendre la structure géographique est aussi important que de savoir tirer. L'hélicoptère est ton <em>cordon ombilical</em> — sans Landing Zone (LZ) débloquée, tu es condamné à de longues marches mortelles.
+    42 km² de territoire hostile. <em>Clique sur n'importe quelle zone ou marqueur LZ</em> pour afficher les informations tactiques dans le panneau ci-dessous. Utilise les filtres pour isoler ce qui t'intéresse. <strong>Les triangles ambrés sont les Landing Zones.</strong> Le point rouge pulsant au centre est Ground Zero — inaccessible.
   </div>
 
-  <div class="divider"><div class="divider-line"></div><div class="divider-text">Structure de la carte</div><div class="divider-line"></div></div>
+  <!-- FILTERS -->
+  <div class="map-filters">
+    <button class="map-filter-btn active" data-filter="all">⬛ Tout afficher</button>
+    <button class="map-filter-btn" data-filter="tier3">🔴 Tier 3 uniquement</button>
+    <button class="map-filter-btn" data-filter="tier2">🟡 Tier 2 uniquement</button>
+    <button class="map-filter-btn" data-filter="base">🟢 Bases de faction</button>
+    <button class="map-filter-btn" data-filter="lz">🚁 Landing Zones</button>
+  </div>
 
-  <div class="grid-3">
-    <div class="card">
-      <span class="card-icon">🟢</span>
-      <h3>Tier 1 — Zones de Départ</h3>
-      <p>Autour de ta base (Pha Lang / Nam Thaven / Kiu Vongsa). Ennemis de faible niveau, missions introductives. <strong>Starter Towns partiellement masquées</strong> sur la carte des factions rivales — zone tampon pour les débutants.</p>
+  <!-- MAP -->
+  <div class="map-wrapper">
+    <div class="map-svg-container">
+      <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1000" height="1000" fill="#0d0f0a"/>
+  <!-- Grid -->
+  <g stroke="rgba(139,115,85,0.06)" stroke-width="0.5">
+    <line x1="0" y1="0" x2="0" y2="1000"/><line x1="100" y1="0" x2="100" y2="1000"/><line x1="200" y1="0" x2="200" y2="1000"/><line x1="300" y1="0" x2="300" y2="1000"/><line x1="400" y1="0" x2="400" y2="1000"/><line x1="500" y1="0" x2="500" y2="1000"/><line x1="600" y1="0" x2="600" y2="1000"/><line x1="700" y1="0" x2="700" y2="1000"/><line x1="800" y1="0" x2="800" y2="1000"/><line x1="900" y1="0" x2="900" y2="1000"/><line x1="1000" y1="0" x2="1000" y2="1000"/>
+    <line x1="0" y1="0" x2="1000" y2="0"/><line x1="0" y1="100" x2="1000" y2="100"/><line x1="0" y1="200" x2="1000" y2="200"/><line x1="0" y1="300" x2="1000" y2="300"/><line x1="0" y1="400" x2="1000" y2="400"/><line x1="0" y1="500" x2="1000" y2="500"/><line x1="0" y1="600" x2="1000" y2="600"/><line x1="0" y1="700" x2="1000" y2="700"/><line x1="0" y1="800" x2="1000" y2="800"/><line x1="0" y1="900" x2="1000" y2="900"/><line x1="0" y1="1000" x2="1000" y2="1000"/>
+  </g>
+  <!-- Island outline (rough polygon) -->
+  <polygon points="120,60 880,80 940,200 960,500 900,850 700,960 300,940 80,800 40,500 60,200"
+    fill="rgba(26,29,22,0.8)" stroke="rgba(139,115,85,0.2)" stroke-width="2"/>
+  <!-- Zones -->
+  <g class="map-zone" data-zone="gz" onclick="selectZone('gz')">
+    <rect x="420" y="420" width="160" height="160" fill="rgba(139,26,26,0.35)" stroke="#8b1a1a" stroke-width="1.5" rx="2"/>
+    <text x="500" y="494" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">GROUND ZERO</text>
+    <text x="500" y="510" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#8b1a1a" letter-spacing="1">INACCESSIBLE</text>
+  </g>
+  <g class="map-zone" data-zone="ft" onclick="selectZone('ft')">
+    <rect x="350" y="180" width="180" height="140" fill="rgba(155,58,26,0.25)" stroke="#9b3a1a" stroke-width="1.5" rx="2"/>
+    <text x="440" y="244" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">FORT NARITH</text>
+    <text x="440" y="260" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#9b3a1a" letter-spacing="1">TIER 3</text>
+  </g>
+  <g class="map-zone" data-zone="ms" onclick="selectZone('ms')">
+    <rect x="620" y="120" width="180" height="150" fill="rgba(155,58,26,0.25)" stroke="#9b3a1a" stroke-width="1.5" rx="2"/>
+    <text x="710" y="189" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">MIDNIGHT SAPPHIRE</text>
+    <text x="710" y="205" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#9b3a1a" letter-spacing="1">TIER 3</text>
+  </g>
+  <g class="map-zone" data-zone="hp" onclick="selectZone('hp')">
+    <rect x="200" y="100" width="180" height="130" fill="rgba(155,58,26,0.25)" stroke="#9b3a1a" stroke-width="1.5" rx="2"/>
+    <text x="290" y="159" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">HUNTER'S PARADISE</text>
+    <text x="290" y="175" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#9b3a1a" letter-spacing="1">TIER 3</text>
+  </g>
+  <g class="map-zone" data-zone="tb" onclick="selectZone('tb')">
+    <rect x="750" y="380" width="170" height="140" fill="rgba(139,115,85,0.2)" stroke="#8b7355" stroke-width="1.5" rx="2"/>
+    <text x="835" y="444" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">TIGER BAY</text>
+    <text x="835" y="460" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#8b7355" letter-spacing="1">TIER 2</text>
+  </g>
+  <g class="map-zone" data-zone="bl" onclick="selectZone('bl')">
+    <rect x="80" y="350" width="160" height="130" fill="rgba(139,115,85,0.2)" stroke="#8b7355" stroke-width="1.5" rx="2"/>
+    <text x="160" y="409" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">BLUE LAGOON</text>
+    <text x="160" y="425" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#8b7355" letter-spacing="1">TIER 2</text>
+  </g>
+  <g class="map-zone" data-zone="sw" onclick="selectZone('sw')">
+    <rect x="290" y="400" width="140" height="120" fill="rgba(139,115,85,0.2)" stroke="#8b7355" stroke-width="1.5" rx="2"/>
+    <text x="360" y="454" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">SAWMILL</text>
+    <text x="360" y="470" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#8b7355" letter-spacing="1">TIER 2</text>
+  </g>
+  <g class="map-zone" data-zone="bp" onclick="selectZone('bp')">
+    <rect x="430" y="630" width="140" height="110" fill="rgba(74,82,64,0.25)" stroke="#4a5240" stroke-width="1.5" rx="2"/>
+    <text x="500" y="679" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">BAN PA</text>
+    <text x="500" y="695" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#4a5240" letter-spacing="1">TIER 1-2</text>
+  </g>
+  <g class="map-zone" data-zone="ybl" onclick="selectZone('ybl')">
+    <rect x="150" y="680" width="140" height="110" fill="rgba(139,115,85,0.2)" stroke="#8b7355" stroke-width="1.5" rx="2"/>
+    <text x="220" y="729" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">YBL-1</text>
+    <text x="220" y="745" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#8b7355" letter-spacing="1">TIER 2-3</text>
+  </g>
+  <g class="map-zone" data-zone="phl" onclick="selectZone('phl')">
+    <rect x="400" y="780" width="160" height="120" fill="rgba(74,82,64,0.3)" stroke="#4a5240" stroke-width="1.5" rx="2"/>
+    <text x="480" y="834" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">PHA LANG</text>
+    <text x="480" y="850" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#4a5240" letter-spacing="1">BASE LRI</text>
+  </g>
+  <g class="map-zone" data-zone="nmt" onclick="selectZone('nmt')">
+    <rect x="680" y="720" width="160" height="120" fill="rgba(74,82,64,0.3)" stroke="#4a5240" stroke-width="1.5" rx="2"/>
+    <text x="760" y="774" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">NAM THAVEN</text>
+    <text x="760" y="790" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#4a5240" letter-spacing="1">BASE MSS</text>
+  </g>
+  <g class="map-zone" data-zone="kv" onclick="selectZone('kv')">
+    <rect x="80" y="120" width="160" height="120" fill="rgba(74,82,64,0.3)" stroke="#4a5240" stroke-width="1.5" rx="2"/>
+    <text x="160" y="174" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">KIU VONGSA</text>
+    <text x="160" y="190" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#4a5240" letter-spacing="1">BASE CSI</text>
+  </g>
+  <g class="map-zone" data-zone="phl_af" onclick="selectZone('phl_af')">
+    <rect x="580" y="820" width="130" height="80" fill="rgba(74,82,64,0.2)" stroke="#4a5240" stroke-width="1.5" rx="2"/>
+    <text x="645" y="854" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="#e8dcc8" opacity="0.9">PHA LANG AIRFIELD</text>
+    <text x="645" y="870" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#4a5240" letter-spacing="1">TIER 1</text>
+  </g>
+
+  <!-- LZ markers -->
+  <g class="lz-marker" data-lz="lz_d1" onclick="selectLZ('lz_d1')">
+    <polygon points="360,183 366,194 354,194" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="360" y="204" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">DELTA 1</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_d2" onclick="selectLZ('lz_d2')">
+    <polygon points="480,188 486,199 474,199" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="480" y="209" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">DELTA 2</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_d3" onclick="selectLZ('lz_d3')">
+    <polygon points="410,283 416,294 404,294" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="410" y="304" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">DELTA 3</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_d4" onclick="selectLZ('lz_d4')">
+    <polygon points="310,253 316,264 304,264" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="310" y="274" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">DELTA 4</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_h1" onclick="selectLZ('lz_h1')">
+    <polygon points="680,123 686,134 674,134" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="680" y="144" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">HOTEL 1</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_h2" onclick="selectLZ('lz_h2')">
+    <polygon points="760,193 766,204 754,204" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="760" y="214" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">HOTEL 2</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_h3" onclick="selectLZ('lz_h3')">
+    <polygon points="620,228 626,239 614,239" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="620" y="249" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">HOTEL 3</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_f1" onclick="selectLZ('lz_f1')">
+    <polygon points="210,108 216,119 204,119" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="210" y="129" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">FOXTROT 1</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_f2" onclick="selectLZ('lz_f2')">
+    <polygon points="350,133 356,144 344,144" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="350" y="154" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">FOXTROT 2</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_j1" onclick="selectLZ('lz_j1')">
+    <polygon points="815,383 821,394 809,394" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="815" y="404" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">JULIET 1</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_j2" onclick="selectLZ('lz_j2')">
+    <polygon points="815,473 821,484 809,484" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="815" y="494" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">JULIET 2</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_k1" onclick="selectLZ('lz_k1')">
+    <polygon points="85,358 91,369 79,369" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="85" y="379" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">KILO 1</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_k2" onclick="selectLZ('lz_k2')">
+    <polygon points="85,443 91,454 79,454" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="85" y="464" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">KILO 2</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_e1" onclick="selectLZ('lz_e1')">
+    <polygon points="295,408 301,419 289,419" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="295" y="429" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">ECHO 1</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_e2" onclick="selectLZ('lz_e2')">
+    <polygon points="390,483 396,494 384,494" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="390" y="504" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">ECHO 2</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_i1" onclick="selectLZ('lz_i1')">
+    <polygon points="435,633 441,644 429,644" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="435" y="654" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">INDIA 1</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_i2" onclick="selectLZ('lz_i2')">
+    <polygon points="550,653 556,664 544,664" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="550" y="674" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">INDIA 2</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_l1" onclick="selectLZ('lz_l1')">
+    <polygon points="155,688 161,699 149,699" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="155" y="709" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">LIMA 1</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_l2" onclick="selectLZ('lz_l2')">
+    <polygon points="260,723 266,734 254,734" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="260" y="744" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">LIMA 2</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_l3" onclick="selectLZ('lz_l3')">
+    <polygon points="175,773 181,784 169,784" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="175" y="794" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">LIMA 3</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_b1" onclick="selectLZ('lz_b1')">
+    <polygon points="695,728 701,739 689,739" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="695" y="749" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">BRAVO 1</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_b2" onclick="selectLZ('lz_b2')">
+    <polygon points="800,748 806,759 794,759" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="800" y="769" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">BRAVO 2</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_b3" onclick="selectLZ('lz_b3')">
+    <polygon points="750,823 756,834 744,834" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="750" y="844" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">BRAVO 3</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_g1" onclick="selectLZ('lz_g1')">
+    <polygon points="590,828 596,839 584,839" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="590" y="849" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">GOLF 1</text>
+  </g>
+  <g class="lz-marker" data-lz="lz_g2" onclick="selectLZ('lz_g2')">
+    <polygon points="680,833 686,844 674,844" fill="#d4820a" opacity="0.8" stroke="#0d0f0a" stroke-width="0.5"/>
+    <text x="680" y="854" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="5.5" fill="#d4820a" opacity="0.7" letter-spacing="0.5">GOLF 2</text>
+  </g>
+
+  <!-- Ground Zero pulse -->
+  <g onclick="selectZone('gz')" style="cursor:pointer;">
+    <circle cx="500" cy="500" r="12" fill="rgba(139,26,26,0.3)" stroke="#8b1a1a" stroke-width="1">
+      <animate attributeName="r" values="10;16;10" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="500" cy="500" r="5" fill="#8b1a1a"/>
+    <text x="500" y="530" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="6" fill="#8b1a1a" letter-spacing="1">GROUND ZERO</text>
+  </g>
+  <!-- Compass -->
+  <g transform="translate(940,60)">
+    <circle r="22" fill="rgba(13,15,10,0.8)" stroke="rgba(139,115,85,0.3)" stroke-width="1"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#d4820a">N</text>
+    <line x1="0" y1="-5" x2="0" y2="5" stroke="rgba(139,115,85,0.4)" stroke-width="0.8"/>
+    <line x1="-5" y1="0" x2="5" y2="0" stroke="rgba(139,115,85,0.4)" stroke-width="0.8"/>
+  </g>
+  <!-- Scale -->
+  <g transform="translate(30,960)">
+    <line x1="0" y1="0" x2="80" y2="0" stroke="rgba(139,115,85,0.5)" stroke-width="1.5"/>
+    <line x1="0" y1="-4" x2="0" y2="4" stroke="rgba(139,115,85,0.5)" stroke-width="1.5"/>
+    <line x1="80" y1="-4" x2="80" y2="4" stroke="rgba(139,115,85,0.5)" stroke-width="1.5"/>
+    <text x="40" y="-8" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="rgba(139,115,85,0.5)">~10 KM</text>
+  </g>
+</svg>
     </div>
-    <div class="card">
-      <span class="card-icon">🟡</span>
-      <h3>Tier 2 — Zones Intermédiaires</h3>
-      <p>Factions IA plus coordonnées. Points d'intérêt contestés entre PMCs jouables. Les LZ "chaudes" commencent ici — <strong>plusieurs factions peuvent atterrir simultanément</strong> au même endroit. Tensions PvP maximales.</p>
-    </div>
-    <div class="card danger">
-      <span class="card-icon">🔴</span>
-      <h3>Tier 3 — Zones Nord / End-Game</h3>
-      <p>Fort Narith, Midnight Sapphire, Hunter's Paradise. Élites IA et factions rivales omniprésentes. <strong>Loot tier 4+, missions end-game.</strong> N'y va pas seul avant Réputation Niveau 2 minimum.</p>
+    <div id="map-tooltip" class="map-tooltip">
+      <div class="tt-tag"></div>
+      <div class="tt-name"></div>
+      <div class="tt-desc"></div>
+      <div class="tt-lzs"></div>
     </div>
   </div>
 
-  <div class="divider"><div class="divider-line"></div><div class="divider-text">Le système de Landing Zones</div><div class="divider-line"></div></div>
-
-  <div class="briefing">
-    Les <em>Landing Zones (LZ)</em> sont les points d'atterrissage et d'extraction de l'hélicoptère. Ce sont tes artères logistiques. Sans LZ débloquée dans une zone, tu es obligé de rentrer à pied — ou d'appeler l'hélico depuis une LZ distante et de marcher jusqu'à ta position.
+  <!-- INFO PANEL -->
+  <div id="info-panel" style="min-height:80px;padding:1.5rem;border:1px solid rgba(139,115,85,0.2);background:rgba(13,15,10,0.5);margin-top:1rem;font-size:0.85rem;color:rgba(139,115,85,0.5);font-family:'Share Tech Mono',monospace;letter-spacing:0.2em;">
+    ▸ SÉLECTIONNE UNE ZONE OU UNE LZ SUR LA CARTE
   </div>
 
-  <ol class="priority-list">
-    <li><span class="priority-num">1</span><div><strong class="hl-paper">Débloquer une LZ :</strong> Tu dois <em>physiquement entrer dans un rayon d'environ 100 mètres</em> autour de la LZ. Elle se débloque automatiquement et devient accessible depuis ton menu de déploiement.</div></li>
-    <li><span class="priority-num">2</span><div><strong class="hl-paper">15 LZ Faction-Locked :</strong> 5 LZ par faction autour de ta base. Zones sécurisées où les factions rivales ne peuvent pas atterrir ni extraire. Ton sanctuaire.</div></li>
-    <li><span class="priority-num">3</span><div><strong class="hl-paper">LZ "Chaudes" :</strong> En dehors des zones faction-locked, toutes les LZ sont accessibles à tout le monde. Toujours couvrir la LZ avant d'atterrir — une embuscade à l'arrivée est une mort garantie.</div></li>
-    <li><span class="priority-num">4</span><div><strong class="hl-paper">Priorité d'exploration :</strong> Lors de chaque déploiement, <em>débloquer une nouvelle LZ</em> devrait être un objectif secondaire permanent. Plus tu as de LZ, plus ton réseau logistique est efficace.</div></li>
-  </ol>
+  <!-- LEGEND -->
+  <div class="map-legend">
+    <div class="legend-item"><div class="legend-rect" style="background:rgba(139,26,26,0.5);border:1px solid #8b1a1a;"></div>INACCESSIBLE / GROUND ZERO</div>
+    <div class="legend-item"><div class="legend-rect" style="background:rgba(155,58,26,0.4);border:1px solid #9b3a1a;"></div>TIER 3 — HAUTE MENACE</div>
+    <div class="legend-item"><div class="legend-rect" style="background:rgba(139,115,85,0.3);border:1px solid #8b7355;"></div>TIER 2 — MENACE MODÉRÉE</div>
+    <div class="legend-item"><div class="legend-rect" style="background:rgba(74,82,64,0.4);border:1px solid #4a5240;"></div>TIER 1 / BASE DE FACTION</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#d4820a;clip-path:polygon(50% 0%, 100% 100%, 0% 100%);border-radius:0;"></div>LANDING ZONE (LZ)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#8b1a1a;"></div>GROUND ZERO — PULSANT</div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Landing Zones par secteur</div><div class="divider-line"></div></div>
+
+  <table class="tbl">
+    <thead><tr><th>Callsign</th><th>Zone</th><th>Tier</th><th>Notes tactiques</th></tr></thead>
+    <tbody>
+      <tr><td class="label">DELTA 1-4</td><td>Fort Narith</td><td><span class="badge red">TIER 3</span></td><td>4 LZ = approches multiples. Delta 3 la plus éloignée et sûre pour approcher.</td></tr>
+      <tr><td class="label">HOTEL 1-3</td><td>Midnight Sapphire</td><td><span class="badge red">TIER 3</span></td><td>Hotel 1 NE / Hotel 3 SW. Contournement possible pour éviter les gardes d'entrée.</td></tr>
+      <tr><td class="label">FOXTROT 1-2</td><td>Hunter's Paradise</td><td><span class="badge red">TIER 3</span></td><td>Accès difficile. Terrain élevé — avantage si tu arrives le premier.</td></tr>
+      <tr><td class="label">JULIET 1-2</td><td>Tiger Bay</td><td><span class="badge amber">TIER 2</span></td><td>Zone portuaire. Couverture dense en CQB. LZ camping fréquent en PvP.</td></tr>
+      <tr><td class="label">KILO 1-2</td><td>Blue Lagoon</td><td><span class="badge amber">TIER 2</span></td><td>Côte Ouest. Moins contestée que Tiger Bay. Bon pour les runs discrets.</td></tr>
+      <tr><td class="label">ECHO 1-2</td><td>Sawmill</td><td><span class="badge amber">TIER 2</span></td><td>Zone centrale. Transit stratégique vers Fort Narith. Toujours sécuriser avant d'extraire.</td></tr>
+      <tr><td class="label">INDIA 1-2</td><td>Ban Pa</td><td><span class="badge green">TIER 1-2</span></td><td>Village rural. Transition vers les zones chaudes. Safe pour les joueurs intermédiaires.</td></tr>
+      <tr><td class="label">LIMA 1-3</td><td>YBL-1</td><td><span class="badge amber">TIER 2-3</span></td><td>Bunker SW. Lima 1 la plus sûre. Complexe labyrinthique — prépare une carte mentale.</td></tr>
+      <tr><td class="label">BRAVO 1-3</td><td>Nam Thaven (MSS)</td><td><span class="badge green">FACTION MSS</span></td><td>LZ faction-locked MSS. Zone sécurisée.</td></tr>
+      <tr><td class="label">GOLF 1-2</td><td>Pha Lang Airfield (LRI)</td><td><span class="badge green">FACTION LRI</span></td><td>LZ faction-locked LRI. Zone sécurisée.</td></tr>
+    </tbody>
+  </table>
+
 </section>
 </main>
-<div class="page-nav">
-  <a href="vendeurs.html">← Vendeurs</a>
-  <a href="index.html" class="center-home">⬛ Retour au manuel</a>
-  <a href="survie.html">Survie →</a>
-</div>
-<footer>
-  <p>GRAY ZONE WARFARE — MANUEL DU COMMANDANT CLOVERSHIELD<br>
-  VERSION 0.4.2.0 — MAI 2026 — SPEARHEAD UPDATE<br>
-  ⬛ FIN DE TRANSMISSION ⬛</p>
-</footer>
+<div class="page-nav"><a href="vendeurs.html">← Vendeurs</a><a href="index.html" class="center-home">⬛ Retour au manuel</a><a href="survie.html">Survie →</a></div>
+<footer><p>GRAY ZONE WARFARE — MANUEL DU COMMANDANT CLOVERSHIELD<br>VERSION 0.4.2.0 — MAI 2026<br>⬛ FIN DE TRANSMISSION ⬛</p></footer>
+
+<script>
+const ZONE_DATA = {
+  "gz": { name: "GROUND ZERO", tier: "INACCESSIBLE", desc: `Zone centrale mystérieuse. Inaccessible. Gardée par l'Armée de Lamang. Origine de l'Événement. Objectif final de la v1.0.` },
+  "ft": { name: "FORT NARITH", tier: "TIER 3", desc: `Installation militaire majeure. Ennemis élites multi-niveaux. Loot Tier 4+. LZ Delta 1-4. Ne pas y aller seul.` },
+  "ms": { name: "MIDNIGHT SAPPHIRE", tier: "TIER 3", desc: `Complexe hôtelier de luxe abandonné. IA haute densité. Blueprints MCX et M700. LZ Hotel 1-3.` },
+  "hp": { name: "HUNTER'S PARADISE", tier: "TIER 3", desc: `Lodge de chasse abandonné. Zone boss. Accès difficile. LZ Foxtrot 1-2.` },
+  "tb": { name: "TIGER BAY", tier: "TIER 2", desc: `Zone portuaire côtière Est. Idéale pour les SMG en CQB. Blueprints MP7. LZ Juliet 1-2.` },
+  "bl": { name: "BLUE LAGOON", tier: "TIER 2", desc: `Zone côtière Ouest. Ennemis mid-tier. LZ Kilo 1-2.` },
+  "sw": { name: "SAWMILL", tier: "TIER 2", desc: `Scierie abandonnée. Zone de transit central. LZ Echo 1-2.` },
+  "bp": { name: "BAN PA", tier: "TIER 1-2", desc: `Village rural. Zone de transition Tier 1→2. LZ India 1-2.` },
+  "ybl": { name: "YBL-1", tier: "TIER 2-3", desc: `Bunker souterrain SW. Complexe de corridors. IA high-level. Quêtes essentielles. LZ Lima 1-3.` },
+  "phl": { name: "PHA LANG", tier: "BASE LRI", desc: `Base LRI — Lamang Recovery Initiative. Starter Town SW. LZ Golf 1-2 (Airfield nearby).` },
+  "nmt": { name: "NAM THAVEN", tier: "BASE MSS", desc: `Base MSS — Mithras Security Systems. Starter Town SE. LZ Bravo 1-3.` },
+  "kv": { name: "KIU VONGSA", tier: "BASE CSI", desc: `Base CSI — Crimson Shield International. Starter Town NW. LZs faction-locked.` },
+  "phl_af": { name: "PHA LANG AIRFIELD", tier: "TIER 1", desc: `Aérodrome de Pha Lang. Early-game. LZ Golf 1-2.` },
+};
+
+const LZ_DATA = {
+  "lz_d1": { name: "DELTA 1", poi: "Fort Narith" },
+  "lz_d2": { name: "DELTA 2", poi: "Fort Narith" },
+  "lz_d3": { name: "DELTA 3", poi: "Fort Narith" },
+  "lz_d4": { name: "DELTA 4", poi: "Fort Narith" },
+  "lz_h1": { name: "HOTEL 1", poi: "Midnight Sapphire" },
+  "lz_h2": { name: "HOTEL 2", poi: "Midnight Sapphire" },
+  "lz_h3": { name: "HOTEL 3", poi: "Midnight Sapphire" },
+  "lz_f1": { name: "FOXTROT 1", poi: "Hunter's Paradise" },
+  "lz_f2": { name: "FOXTROT 2", poi: "Hunter's Paradise" },
+  "lz_j1": { name: "JULIET 1", poi: "Tiger Bay" },
+  "lz_j2": { name: "JULIET 2", poi: "Tiger Bay" },
+  "lz_k1": { name: "KILO 1", poi: "Blue Lagoon" },
+  "lz_k2": { name: "KILO 2", poi: "Blue Lagoon" },
+  "lz_e1": { name: "ECHO 1", poi: "Sawmill" },
+  "lz_e2": { name: "ECHO 2", poi: "Sawmill" },
+  "lz_i1": { name: "INDIA 1", poi: "Ban Pa" },
+  "lz_i2": { name: "INDIA 2", poi: "Ban Pa" },
+  "lz_l1": { name: "LIMA 1", poi: "YBL-1" },
+  "lz_l2": { name: "LIMA 2", poi: "YBL-1" },
+  "lz_l3": { name: "LIMA 3", poi: "YBL-1" },
+  "lz_b1": { name: "BRAVO 1", poi: "Nam Thaven" },
+  "lz_b2": { name: "BRAVO 2", poi: "Nam Thaven" },
+  "lz_b3": { name: "BRAVO 3", poi: "Nam Thaven" },
+  "lz_g1": { name: "GOLF 1", poi: "Pha Lang Airfield" },
+  "lz_g2": { name: "GOLF 2", poi: "Pha Lang Airfield" },
+};
+
+
+var tooltip = document.getElementById('map-tooltip');
+var mapContainer = document.querySelector('.map-svg-container');
+
+function positionTooltip(svgEl, x, y) {
+  var rect = mapContainer.getBoundingClientRect();
+  var containerW = rect.width;
+  var containerH = rect.height;
+  // x,y are SVG coords (0-1000), convert to %
+  var px = (x / 1000) * containerW + rect.left - rect.left;
+  var py = (y / 1000) * containerH + rect.top - rect.top;
+  var ttW = 240;
+  var left = px + 15;
+  if (left + ttW > containerW) left = px - ttW - 10;
+  if (left < 0) left = 5;
+  tooltip.style.left = left + 'px';
+  tooltip.style.top = Math.max(0, py - 20) + 'px';
+}
+
+function showTooltip(tag, name, desc, extra) {
+  tooltip.querySelector('.tt-tag').textContent = tag;
+  tooltip.querySelector('.tt-name').textContent = name;
+  tooltip.querySelector('.tt-desc').textContent = desc;
+  tooltip.querySelector('.tt-lzs').textContent = extra || '';
+  tooltip.classList.add('visible');
+}
+
+function hideTooltip() {
+  tooltip.classList.remove('visible');
+}
+
+function selectZone(id) {
+  var d = ZONE_DATA[id];
+  if (!d) return;
+  document.querySelectorAll('.map-zone').forEach(function(el) { el.style.opacity = '0.5'; });
+  var el = document.querySelector('[data-zone="' + id + '"]');
+  if (el) el.style.opacity = '1';
+  // find LZs for this zone
+  var lzNames = Object.values(LZ_DATA).filter(function(l){
+    return ZONE_DATA[id] && l.poi.toLowerCase().includes(d.name.split(' ')[0].toLowerCase());
+  }).map(function(l){ return l.name; }).join(' · ');
+  var panel = document.getElementById('info-panel');
+  panel.innerHTML = '<div class="tt-tag">' + d.tier + '</div>' +
+    '<div class="tt-name" style="font-family:Bebas Neue,sans-serif;font-size:1.8rem;color:var(--paper);letter-spacing:0.06em;margin:0.3rem 0;">' + d.name + '</div>' +
+    '<div style="font-size:0.85rem;line-height:1.7;color:var(--sand);margin-bottom:0.8rem;">' + d.desc + '</div>' +
+    (lzNames ? '<div class="tt-lzs">🚁 LZ : ' + lzNames + '</div>' : '');
+}
+
+function selectLZ(id) {
+  var d = LZ_DATA[id];
+  if (!d) return;
+  var panel = document.getElementById('info-panel');
+  panel.innerHTML = '<div class="tt-tag">LANDING ZONE</div>' +
+    '<div class="tt-name" style="font-family:Bebas Neue,sans-serif;font-size:1.8rem;color:var(--amber);letter-spacing:0.06em;margin:0.3rem 0;">' + d.name + '</div>' +
+    '<div style="font-size:0.85rem;color:var(--sand);">Zone : <strong style="color:var(--paper);">' + d.poi + '</strong></div>' +
+    '<div style="font-size:0.78rem;color:var(--khaki);margin-top:0.5rem;font-family:Share Tech Mono,monospace;letter-spacing:0.15em;">Approche toujours depuis une position haute. LZ camping fréquent.</div>';
+}
+
+// Reset zones opacity
+document.querySelector('.map-svg-container svg').addEventListener('click', function(e) {
+  if (!e.target.closest('.map-zone') && !e.target.closest('.lz-marker')) {
+    document.querySelectorAll('.map-zone').forEach(function(el) { el.style.opacity = '1'; });
+  }
+});
+
+// Filter buttons
+document.querySelectorAll('.map-filter-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var filter = this.dataset.filter;
+    document.querySelectorAll('.map-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    document.querySelectorAll('.lz-marker').forEach(function(el) {
+      el.style.display = (filter === 'lz' || filter === 'all') ? '' : 'none';
+    });
+    document.querySelectorAll('.map-zone').forEach(function(el) {
+      if (filter === 'all') { el.style.display = ''; el.style.opacity = '1'; return; }
+      var zone_id = el.dataset.zone;
+      var d = ZONE_DATA[zone_id];
+      if (!d) return;
+      if (filter === 'tier3' && d.tier.includes('TIER 3')) { el.style.display=''; el.style.opacity='1'; }
+      else if (filter === 'tier2' && d.tier.includes('TIER 2')) { el.style.display=''; el.style.opacity='1'; }
+      else if (filter === 'base' && d.tier.includes('BASE')) { el.style.display=''; el.style.opacity='1'; }
+      else if (filter === 'lz') { el.style.display=''; el.style.opacity='0.4'; }
+      else { el.style.opacity='0.2'; }
+    });
+  });
+});
+</script>
+
 </body>
 </html>
