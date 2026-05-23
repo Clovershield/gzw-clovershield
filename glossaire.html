@@ -1086,8 +1086,50 @@
   text-align: center;
 }
 
+
+/* ── SEARCH HIGHLIGHT ─────────────────── */
+mark.search-hl {
+  background: rgba(212,130,10,0.35);
+  color: var(--amber);
+  border-radius: 2px;
+  padding: 0 2px;
+  outline: 1px solid rgba(212,130,10,0.5);
+}
 </style>
 </head><body>
+
+<script>
+// On page load: if URL has ?q=..., highlight matches and scroll to first
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var q = params.get('q');
+  if (!q || q.length < 2) return;
+  
+  function walkText(node, callback) {
+    if (node.nodeType === 3) { callback(node); return; }
+    if (['SCRIPT','STYLE','NAV','FOOTER'].indexOf(node.tagName) !== -1) return;
+    Array.from(node.childNodes).forEach(function(c) { walkText(c, callback); });
+  }
+  
+  var re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
+  var firstMark = null;
+  
+  walkText(document.body, function(textNode) {
+    if (!re.test(textNode.textContent)) return;
+    re.lastIndex = 0;
+    var span = document.createElement('span');
+    span.innerHTML = textNode.textContent.replace(re, '<mark class="search-hl">$1</mark>');
+    textNode.parentNode.replaceChild(span, textNode);
+    if (!firstMark) firstMark = span.querySelector('.search-hl');
+  });
+  
+  if (firstMark) {
+    setTimeout(function() {
+      firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 200);
+  }
+})();
+</script>
 
     <div class="search-bar-wrap" style="margin:0 0 0.5rem;">
       <input id="search-overlay-input" class="search-input" type="text" 
@@ -1169,15 +1211,9 @@
   <a href="armes.html" data-num="10" >Armes</a>
   <a href="roadmap.html" data-num="11" >Roadmap</a>
   <a href="glossaire.html" data-num="12" class='active'>Glossaire</a>
-  <div class="nav-search-wrap"><button class="nav-search-btn" id="nav-search-btn" title="Rechercher">🔍</button></div>
+  <div class="nav-search-wrap"><button class="nav-search-btn" id="nav-search-btn" title="Rechercher" style="color:var(--amber);font-size:1rem;">🔍</button></div>
 </nav>
-<div class="nav-search-panel" id="nav-search-panel">
-  <div class="nav-search-row">
-    <span style="color:var(--amber);font-size:0.85rem;flex-shrink:0;">🔍</span>
-    <input class="nav-search-input" id="nav-search-input" type="text" placeholder="▸ RECHERCHER DANS LE MANUEL..." autocomplete="off" spellcheck="false">
-    <button class="nav-search-close" id="nav-search-close">✕ ESC</button>
-  </div>
-  <ul class="nav-search-results" id="nav-search-results"></ul>
+<ul class="nav-search-results" id="nav-search-results"></ul>
 </div>
 <div class="breadcrumb"><a href="index.html">Manuel</a><span>›</span>Glossaire</div>
 <main>
