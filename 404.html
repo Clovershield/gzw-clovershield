@@ -22,5 +22,57 @@ a:hover{background:var(--amber);color:var(--night);}
   <p>⬛ SECTEUR INTROUVABLE — CETTE ZONE N'EXISTE PAS SUR LA CARTE ⬛</p>
   <a href="index.html">← RETOUR AU MANUEL</a>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var panel = document.getElementById('nav-search-panel');
+  var inp = document.getElementById('nav-search-input');
+  var res = document.getElementById('nav-search-results');
+  var btn = document.getElementById('nav-search-btn');
+  var cls = document.getElementById('nav-search-close');
+  if (!panel || !inp) return;
+
+  function openPanel() { panel.classList.add('open'); setTimeout(function(){ inp.focus(); }, 50); }
+  function closePanel() { panel.classList.remove('open'); inp.value = ''; res.innerHTML = ''; }
+
+  if (btn) btn.addEventListener('click', openPanel);
+  if (cls) cls.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePanel(); });
+
+  function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function highlight(t, q) { return q ? t.replace(new RegExp('(' + escRe(q) + ')', 'gi'), '<mark>$1</mark>') : t; }
+  function excerpt(t, q) {
+    var idx = q ? t.toLowerCase().indexOf(q.toLowerCase()) : -1;
+    var s = idx > 60 ? idx - 60 : 0;
+    return (s > 0 ? '…' : '') + t.slice(s, s + 160) + '…';
+  }
+
+  inp.addEventListener('input', function() {
+    var q = this.value.trim();
+    res.innerHTML = '';
+    if (!q || q.length < 2) return;
+    var index = (typeof SEARCH_INDEX !== 'undefined') ? SEARCH_INDEX : [];
+    if (!index.length) {
+      res.innerHTML = '<li class="nav-search-empty">⬛ INDEX NON CHARGÉ</li>';
+      return;
+    }
+    var matches = index.filter(function(p) {
+      return p.title.toLowerCase().includes(q.toLowerCase()) ||
+             p.desc.toLowerCase().includes(q.toLowerCase()) ||
+             p.text.toLowerCase().includes(q.toLowerCase());
+    }).slice(0, 8);
+    if (!matches.length) {
+      res.innerHTML = '<li class="nav-search-empty">⬛ AUCUN RÉSULTAT POUR "' + q + '"</li>';
+      return;
+    }
+    res.innerHTML = matches.map(function(p) {
+      return '<li class="nav-sr-item"><a href="' + p.page + '">' +
+        '<span class="nav-sr-page">' + p.page.replace('.html','').toUpperCase() + '</span>' +
+        '<span><div class="nav-sr-title">' + highlight(p.title, q) + '</div>' +
+        '<div class="nav-sr-excerpt">' + highlight(excerpt(p.text, q), q) + '</div></span>' +
+        '</a></li>';
+    }).join('');
+  });
+});
+</script>
 </body>
 </html>
